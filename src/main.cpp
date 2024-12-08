@@ -3,11 +3,10 @@ using namespace std;
 
 int main()
 {
-
-  for (int i = 0; i < 3; i++)
-  {
-    cout << unitbuf;
-    cerr << unitbuf;
+  cout << unitbuf;
+  cerr << unitbuf;
+  
+  while{
     string input;
     cout << "$ ";
     getline(cin, input);
