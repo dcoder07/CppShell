@@ -5,8 +5,9 @@ int main()
 {
   cout << unitbuf;
   cerr << unitbuf;
-  
-  while{
+
+  while (true)
+  {
     string input;
     cout << "$ ";
     getline(cin, input);
