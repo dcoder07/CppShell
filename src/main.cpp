@@ -16,10 +16,10 @@ int main()
 
     if (input.substr(0, 5) == "type ")
     {
-      if (input.substr(5) == "invalid_command")
-        cout << input.substr(5) << ": not found" << endl;
-      else
+      if (input.substr(5) == "exit" || input.substr(5) == "echo")
         cout << input.substr(5) << " is a shell builtin" << endl;
+      else
+        cout << input.substr(5) << ": not found" << endl;
     }
     else
       cout << input << ": command not found" << endl;
