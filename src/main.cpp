@@ -16,7 +16,7 @@ int main()
 
     if (input.substr(0, 5) == "type ")
     {
-      if (input.substr(5) == "exit" || input.substr(5) == "echo")
+      if (input.substr(5) == "exit" || input.substr(5) == "echo" || input.substr(5) == "type")
         cout << input.substr(5) << " is a shell builtin" << endl;
       else
         cout << input.substr(5) << ": not found" << endl;
