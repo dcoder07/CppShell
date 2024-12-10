@@ -13,7 +13,7 @@ int main()
     getline(cin, input);
     if (input == "exit 0")
       return 0;
-    if (input.substr(0, 4) == "echo ")
+    if (input.substr(0, 5) == "echo ")
       cout << input.substr(5) << endl;
     else
       cout << input << ": command not found" << endl;
