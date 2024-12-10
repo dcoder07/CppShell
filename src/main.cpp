@@ -14,7 +14,7 @@ int main()
     if (input == "exit 0")
       return 0;
     if (input.substr(0, 4) == "echo")
-      cout << input.substr(4)<<endl;
+      cout << input.substr(5)<<endl;
   }
 
   return 0;
