@@ -13,8 +13,14 @@ int main()
     getline(cin, input);
     if (input == "exit 0")
       return 0;
-    if (input.substr(0, 5) == "echo ")
-      cout << input.substr(5) << endl;
+
+    if (input.substr(0, 5) == "type ")
+    {
+      if (input.substr(5) == "invalid_command")
+        cout << input.substr(5) << ": not found" << endl;
+      else
+        cout << input.substr(5) << " is a shell builtin" << endl;
+    }
     else
       cout << input << ": command not found" << endl;
   }
