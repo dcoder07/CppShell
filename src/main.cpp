@@ -29,7 +29,10 @@ int main()
     }
 
     if (input.substr(0, 5) == "echo ")
+    {
+      checkValid = 1;
       cout << input.substr(5) << endl;
+    }
 
     if (checkValid == 0)
       cout << input << ": command not found" << endl;
