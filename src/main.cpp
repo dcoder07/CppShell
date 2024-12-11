@@ -3,40 +3,50 @@ using namespace std;
 
 int main()
 {
-  int exit = 0, checkValid = 0;
+  bool exit = 0;
   while (!exit)
   {
-    cout << unitbuf;
-    cerr << unitbuf;
-    string input;
-    checkValid = 0;
-    cout << "$ ";
-    getline(cin, input);
+    /* code */
+
+    // Flush after every std::cout / std:cerr
+    std::cout << std::unitbuf;
+    std::cerr << std::unitbuf;
+    // You can use print statements as follows for debugging, they'll be visible when running tests.
+    // std::cout << "Logs from your program will appear here!\n";
+    // Uncomment this block to pass the first stage
+    std::cout << "$ ";
+    bool checkValid = 0;
+    std::string input;
+    std::getline(std::cin, input);
 
     if (input == "exit 0")
     {
-      exit = 1;
       checkValid = 1;
+      exit = 1;
     }
-
     if (input.substr(0, 5) == "type ")
     {
       checkValid = 1;
-      if (input.substr(5, 4) == "type" || input.substr(5, 4) == "exit" || input.substr(5, 4) == "echo")
-        cout << input << " is a shell builtin" << endl;
+      std::string cmd = input.substr(5);
+      if (cmd.substr(0, 4) == "type" || cmd.substr(0, 4) == "exit" || cmd.substr(0, 4) == "echo")
+      {
+        std::cout << cmd << " is a shell builtin\n";
+      }
       else
-        cout << input << " not found" << endl;
+      {
+        std::cout << cmd << " not found\n";
+      }
     }
-
     if (input.substr(0, 5) == "echo ")
     {
       checkValid = 1;
-      cout << input.substr(5) << endl;
+      std::string toPrint = input.substr(5);
+      std::cout << toPrint << '\n';
     }
-
     if (checkValid == 0)
-      cout << input << ": command not found" << endl;
+    {
+      std::cout << input << ": command not found\n";
+    }
   }
-
   return 0;
 }
