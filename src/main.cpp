@@ -22,7 +22,8 @@ int main()
     if (input.substr(0, 5) == "type ")
     {
       checkValid = 1;
-      if (input.substr(5, 4) == "type" || input.substr(5, 4) == "echo" || input.substr(5, 4) == "exit")
+      string s = input.substr(0, 5);
+      if (s.substr(0, 4) == "type" || s.substr(0, 4) == "echo" || s.substr(0, 4) == "exit")
         cout << input << " is a shell builtin" << endl;
       else
         cout << input << " not found" << endl;
