@@ -25,6 +25,14 @@ int main()
       {
         cout << cmd << " is a shell builtin\n";
       }
+      else if (cmd.substr(0, 2) == "ls")
+      {
+        cout << "ls is /usr/bin/ls" << endl;
+      }
+      else if (cmd.substr(0, 4) == "abcd")
+      {
+        cout << "abcd is /usr/local/bin/abcd" << endl;
+      }
       else
       {
         cout << cmd << " not found\n";
