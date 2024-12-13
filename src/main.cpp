@@ -40,7 +40,7 @@ int main()
       continue;
     else if (cmd == "echo")
       cout << input.substr(5) << endl;
-    else if (cmd == "exit0")
+    else if (input.substr(0, 6) == "exit 0")
       exit = true;
     else if (cmd == "type")
     {
