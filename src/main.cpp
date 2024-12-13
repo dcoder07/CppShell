@@ -1,56 +1,62 @@
 #include <bits/stdc++.h>
 using namespace std;
+bool isValid(string command)
+{
+  string str = command.substr(0, command.find(" "));
+  if (str == "type" || str == "echo" || str == "exit" || str == "cd")
+    return true;
+  return false;
+}
+
+string getPathEnv(string command)
+{
+  string path_env = getenv("PATH");
+  stringstream ss(path_env);
+  string temp;
+  while (!ss.eof())
+  {
+    getline(ss, temp, ':');
+    string commandPath = temp + '/' + command;
+    if (filesystem::exists(commandPath))
+      return commandPath;
+  }
+  return "";
+}
 
 int main()
 {
-  bool exit = 0;
+  bool exit = false;
   while (!exit)
   {
+    cout << unitbuf;
+    cerr << unitbuf;
     cout << "$ ";
-    bool checkValid = 0;
     string input;
     getline(cin, input);
 
-    if (input == "exit 0")
+    switch (isValid(input))
     {
-      checkValid = 1;
-      exit = 1;
-    }
-
-    if (input.substr(0, 5) == "type ")
-    {
-      checkValid = 1;
-      string cmd = input.substr(5);
-      if (cmd.substr(0, 4) == "type" || cmd.substr(0, 4) == "exit" || cmd.substr(0, 4) == "echo")
-      {
-        cout << cmd << " is a shell builtin\n";
-      }
-      else if (cmd.substr(0, 2) == "ls")
-      {
-        cout << "ls is /usr/bin/ls" << endl;
-      }
-      else if (cmd.substr(0, 4) == "abcd")
-      {
-        cout << "abcd is /usr/local/bin/abcd" << endl;
-      }
+    case cd:
+      break;
+    case echo:
+      cout << input.substr(5) << endl;
+    case exit0:
+      exit = true;
+      break;
+    case type:
+      if (isValid(input.substr(5)))
+        cout << input.substr(5) << " is a shell builtin" << endl;
       else
       {
-        cout << cmd << " not found\n";
+        string path = get_path(input.substr(5));
+        if (!path.empty())
+          cout << input << " is " << path << endl;
+        else
+          cout << input << " not found" << endl;
       }
-    }
-
-    if (input.substr(0, 5) == "echo ")
-    {
-      checkValid = 1;
-      string toPrint = input.substr(5);
-      cout << toPrint << '\n';
-    }
-
-    if (!checkValid)
-    {
-      cout << input << ": command not found\n";
+    default:
+      cout << input << ": command not found" << endl;
     }
   }
-
   return 0;
 }
