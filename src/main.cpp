@@ -35,25 +35,24 @@ int main()
     string input;
     getline(cin, input);
 
-    string cmd = input.substr(0, 4);
+    string cmd = input.substr(0, 4), str = input.substr(5);
     if (cmd == "cd")
       continue;
     else if (cmd == "echo")
-      cout << input.substr(5) << endl;
+      cout << str << endl;
     else if (input.substr(0, 6) == "exit 0")
       exit = true;
     else if (cmd == "type")
     {
-      string st = input.substr(5);
-      if (isValid(st))
-        cout << st << " is a shell builtin" << endl;
+      if (isValid(str))
+        cout << str << " is a shell builtin" << endl;
       else
       {
-        string path = getPathEnv(st);
+        string path = getPathEnv(str);
         if (!path.empty())
-          cout << input.substr(5) << " is " << path << endl;
+          cout << str << " is " << path << endl;
         else
-          cout << input.substr(5) << ": not found" << endl;
+          cout << str << ": not found" << endl;
       }
     }
     else
