@@ -34,21 +34,23 @@ int main()
     string input;
     getline(cin, input);
 
+    string cmd = input.substr(5);
+
     switch (isValid(input))
     {
-    case cd:
+    case "cd":
       break;
-    case echo:
-      cout << input.substr(5) << endl;
-    case exit0:
+    case "echo":
+      cout << cmd << endl;
+    case "exit0":
       exit = true;
       break;
-    case type:
-      if (isValid(input.substr(5)))
-        cout << input.substr(5) << " is a shell builtin" << endl;
+    case "type":
+      if (isValid(cmd))
+        cout << cmd << " is a shell builtin" << endl;
       else
       {
-        string path = get_path(input.substr(5));
+        string path = getPathEnv(cmd);
         if (!path.empty())
           cout << input << " is " << path << endl;
         else
