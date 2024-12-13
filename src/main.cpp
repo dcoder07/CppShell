@@ -38,14 +38,14 @@ int main()
 
     switch (isValid(input))
     {
-    case "cd":
+    case cd:
       break;
-    case "echo":
+    case echo:
       cout << cmd << endl;
-    case "exit0":
+    case exit0:
       exit = true;
       break;
-    case "type":
+    case type:
       if (isValid(cmd))
         cout << cmd << " is a shell builtin" << endl;
       else
