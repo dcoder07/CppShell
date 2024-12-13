@@ -53,7 +53,7 @@ int main()
         if (!path.empty())
           cout << input.substr(5) << " is " << path << endl;
         else
-          cout << path << " not found" << endl;
+          cout << input.substr(5) << " not found" << endl;
       }
     }
     else
