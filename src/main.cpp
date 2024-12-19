@@ -1,18 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool isValid(string command)
+enum commandType
 {
-  string str = command.substr(0, command.find(" "));
-  if (str == "type" || str == "echo" || str == "exit" || str == "cd")
-    return true;
-  return false;
-}
+  builtIn,
+  executable,
+  nonexistent
+};
 
-string getPathEnv(string command)
+struct fullCommandType
 {
-  string path_env = getenv("PATH");
-  stringstream ss(path_env);
+  commandType type;
+  string execPath;
+};
+
+string findCommandExecPath(string command)
+{
+  string pathEnv = getenv('PATH');
+  stringstream ss(pathEnv);
   string temp;
   while (!ss.eof())
   {
@@ -24,39 +29,115 @@ string getPathEnv(string command)
   return "";
 }
 
+fullCommandType commandToFullCommand(string command)
+{
+  fullCommandType fct;
+
+  vector<string> builtIn_commands = {"exit", "echo", "type"};
+  if (find(builtIn_commands.begin(), builtIn_commands.end(), command) != builtIn_commands.end())
+  {
+    fct.type = commandType::builtIn;
+    return fct;
+  }
+
+  string exec_path = findCommandExecPath(command);
+  if (exec_path.size() != 0)
+  {
+    fct.type = commandType::executable;
+    fct.execPath = exec_path;
+    return fct;
+  }
+
+  else
+    fct.type = commandType::nonexistent;
+  return fct;
+}
+
+vector<string> parseCommand(string s)
+{
+  vector<string> v;
+  stringstream ss(s);
+  string temp = "";
+  while (ss >> temp)
+    v.push_back(temp);
+  return v;
+}
+
 int main()
 {
-  bool exit = false;
-  while (!exit)
+  cout << unitbuff;
+  cerr << unitbuff;
+
+  while (true)
   {
-    cout << unitbuf;
-    cerr << unitbuf;
     cout << "$ ";
     string input;
     getline(cin, input);
 
-    string cmd = input.substr(0, 4), str = input.substr(5);
-    if (cmd == "cd")
+    vector<string> command_vec = parseCommand(input);
+    if (command_vec.size() == 0)
       continue;
-    else if (cmd == "echo")
-      cout << str << endl;
-    else if (input.substr(0, 6) == "exit 0")
-      exit = true;
-    else if (cmd == "type")
+
+    fullCommandType fct = commandToFullCommand(command_vec[0]);
+    if (fct.type == builtIn)
     {
-      if (isValid(str))
-        cout << str << " is a shell builtin" << endl;
-      else
+      string cmd = command_vec[0];
+      if (cmd == "exit")
       {
-        string path = getPathEnv(str);
-        if (!path.empty())
-          cout << str << " is " << path << endl;
-        else
-          cout << str << ": not found" << endl;
+        int exit_code = stoi(command_vec[1]);
+        return exit_code;
       }
+
+      if (cmd == "echo")
+      {
+        for (int i = 1; i < command_vec.size(); i++)
+        {
+          if (i != 1)
+            cout << " ";
+          cout << command_vec[i]''
+        }
+        cout << endl;
+        continue;
+      }
+
+      if (cmd == "type")
+      {
+        if (command_vec.size() < 2)
+          continue;
+        string c = command_vec[1];
+        fullCommandType cfct = commandToFullCommand(c);
+        switch (cfct.type)
+        {
+        case builtIn:
+          cout << c << " is a builtin command" << endl;
+          break;
+        case executable:
+          cout << c << " is " << cfct.execPath << endl;
+          break;
+        case nonexistent:
+          cout << c << " not found" << endl;
+          break;
+
+        default:
+          break;
+        }
+        continue;
+      }
+      continue;
     }
-    else
-      cout << input << ": command not found" << endl;
+
+    if (fct.type == executable)
+    {
+      string commmand_full_path = fct.execPath;
+      for (int i = 1; i < command_vec.size(); i++)
+        commmand_full_path += (" " + command_vec[i]);
+
+      const char *command_ptr = commmand_full_path.c_str();
+      system(command_ptr);
+      continue;
+    }
+    cout << input << ": command not found" << endl;
   }
+
   return 0;
 }
