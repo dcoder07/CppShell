@@ -115,7 +115,7 @@ int main()
           cout << c << " is " << cfct.execPath << endl;
           break;
         case nonexistent:
-          cout << c << " not found" << endl;
+          cout << c << ": not found" << endl;
           break;
 
         default:
