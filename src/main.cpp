@@ -16,7 +16,7 @@ struct fullCommandType
 
 string findCommandExecPath(string command)
 {
-  string pathEnv = getenv('PATH');
+  string pathEnv = getenv("PATH");
   stringstream ss(pathEnv);
   string temp;
   while (!ss.eof())
@@ -94,7 +94,7 @@ int main()
         {
           if (i != 1)
             cout << " ";
-          cout << command_vec[i]''
+          cout << command_vec[i];
         }
         cout << endl;
         continue;
