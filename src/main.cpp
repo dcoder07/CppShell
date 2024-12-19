@@ -65,8 +65,8 @@ vector<string> parseCommand(string s)
 
 int main()
 {
-  cout << unitbuff;
-  cerr << unitbuff;
+  cout << unitbuf;
+  cerr << unitbuf;
 
   while (true)
   {
