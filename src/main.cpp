@@ -109,7 +109,7 @@ int main()
         switch (cfct.type)
         {
         case builtIn:
-          cout << c << " is a builtin command" << endl;
+          cout << c << " is a shell builtin" << endl;
           break;
         case executable:
           cout << c << " is " << cfct.execPath << endl;
