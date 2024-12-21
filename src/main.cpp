@@ -90,11 +90,20 @@ int main()
 
       else if (cmd == "echo")
       {
-        for (int i = 1; i < command_vec.size(); i++)
+        if (input.size() > 5 && input[5] == "'")
         {
-          if (i != 1)
-            cout << " ";
-          cout << command_vec[i];
+          int i = 6;
+          while (s[i] != '\'')
+            cout << s[i++];
+        }
+        else
+        {
+          for (int i = 1; i < command_vec.size(); i++)
+          {
+            if (i != 1)
+              cout << " ";
+            cout << command_vec[i];
+          }
         }
         cout << endl;
       }
