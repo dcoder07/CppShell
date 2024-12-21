@@ -74,6 +74,31 @@ vector<string> parseCommand(string s)
   return v;
 }
 
+void evaluateCatCommand(char ch, string &input)
+{
+  int i = 0;
+  vector<string> paths_vec;
+  while (i < input.size())
+  {
+    if (input[i] == ch)
+    {
+      i++;
+      string path = "";
+      while (input[i] != ch)
+        path += input[i++];
+      paths_vec.push_back(path);
+    }
+    i++;
+  }
+
+  for (auto path : paths_vec)
+  {
+    ifstream f(path);
+    if (f.is_open())
+      cout << f.rdbuf();
+  }
+}
+
 int main()
 {
   cout << unitbuf;
@@ -193,27 +218,7 @@ int main()
 
     else if (fct.type == ext_executable)
     {
-      int i = 0;
-      vector<string> paths_vec;
-      while (i < input.size())
-      {
-        if (input[i] == '\'' || input[i] == '\"')
-        {
-          i++;
-          string path = "";
-          while (input[i] != '\'' && input[i] != '\"')
-            path += input[i++];
-          paths_vec.push_back(path);
-        }
-        i++;
-      }
-
-      for (auto path : paths_vec)
-      {
-        ifstream f(path);
-        if (f.is_open())
-          cout << f.rdbuf();
-      }
+      evaluateCatCommand(input[4], input);
     }
 
     else
