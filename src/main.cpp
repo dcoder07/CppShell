@@ -93,8 +93,8 @@ int main()
         if (input.size() > 5 && input[5] == "'")
         {
           int i = 6;
-          while (s[i] != '\'')
-            cout << s[i++];
+          while (input[i] != '\'')
+            cout << input[i++];
         }
         else
         {
