@@ -123,6 +123,12 @@ int main()
         }
         continue;
       }
+
+      if (cmd == "pwd")
+      {
+        string cwd = filesystem::current_path();
+        cout << cwd << endl;
+      }
       continue;
     }
 
