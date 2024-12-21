@@ -176,7 +176,7 @@ int main()
 
     else if (fct.type == ext_executable)
     {
-      i = 0;
+      int i = 0;
       vector<string> paths_vec;
       while (i < input.size())
       {
