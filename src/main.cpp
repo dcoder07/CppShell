@@ -90,7 +90,7 @@ int main()
 
       else if (cmd == "echo")
       {
-        if (input.size() > 5 && input[5] == "'")
+        if (input.size() > 5 && input[5] == '\'')
         {
           int i = 6;
           while (input[i] != '\'')
