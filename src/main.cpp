@@ -118,6 +118,7 @@ int main()
               i++;
               while (input[i] != '\"')
                 cout << input[i++];
+              cout << " ";
             }
             i++;
           }
