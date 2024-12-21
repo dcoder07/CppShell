@@ -201,7 +201,7 @@ int main()
         {
           i++;
           string path = "";
-          while (input[i] != '\'' || input[i] == '\"')
+          while (input[i] != '\'' && input[i] != '\"')
             path += input[i++];
           paths_vec.push_back(path);
         }
