@@ -153,10 +153,10 @@ int main()
       {
         string path1 = "", path2 = "";
         int i = 4;
-        while (input[i] != "\'")
+        while (input[i] != '\'')
           path1 += input[i++];
         i += 3;
-        while (input[i] != "\'")
+        while (input[i] != '\'')
           path2 += input[i++];
 
         ifstream f1(path1), f2(path2);
