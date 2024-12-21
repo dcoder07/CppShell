@@ -169,8 +169,8 @@ int main()
         for (auto path : paths_vec)
         {
           ifstream f(path);
-          if (f2.is_open())
-            cout << f2.rdbuf() << " ";
+          if (f.is_open())
+            cout << f.rdbuf() << " ";
         }
         cout << endl;
       }
