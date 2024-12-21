@@ -33,7 +33,7 @@ fullCommandType commandToFullCommand(string command)
 {
   fullCommandType fct;
 
-  vector<string> builtIn_commands = {"exit", "echo", "type"};
+  vector<string> builtIn_commands = {"exit", "echo", "type", "pwd"};
   if (find(builtIn_commands.begin(), builtIn_commands.end(), command) != builtIn_commands.end())
   {
     fct.type = commandType::builtIn;
@@ -104,11 +104,7 @@ int main()
         if (command_vec.size() < 2)
           continue;
         string c = command_vec[1];
-        if (c == "pwd")
-        {
-          cout << c << " is a shell builtin" << endl;
-          continue;
-        }
+
         fullCommandType cfct = commandToFullCommand(c);
         switch (cfct.type)
         {
@@ -126,6 +122,9 @@ int main()
           break;
         }
       }
+
+      else if (cmd == "pwd")
+        cout << filesystem::current_path().string() << endl;
     }
 
     else if (fct.type == executable)
@@ -136,10 +135,6 @@ int main()
 
       const char *command_ptr = commmand_full_path.c_str();
       system(command_ptr);
-    }
-    else if (command_vec[0] == "pwd")
-    {
-      cout << filesystem::current_path().string() << endl;
     }
 
     else
