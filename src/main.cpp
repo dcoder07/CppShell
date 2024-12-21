@@ -164,7 +164,7 @@ int main()
           cout << f1.rdbuf();
         cout << " ";
         if (f2.is_open())
-          cout << f1.rdbuf();
+          cout << f2.rdbuf();
         cout << endl;
       }
     }
