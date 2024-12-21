@@ -129,7 +129,7 @@ int main()
       else if (cmd == "cd")
       {
         if (filesystem::exists(command_vec[1]))
-          chdir(path.c_str());
+          chdir(command_vec[1].c_str());
         else
           cout << cmd << ": " << command_vec[1] << ": No such file or directory" << endl;
       }
