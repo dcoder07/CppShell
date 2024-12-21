@@ -130,7 +130,7 @@ int main()
       {
         string path = findCommandExecPath(command_vec[1]);
         if (path.size() == 0)
-          cout << cmd << ": " << path << ": No such file or directory" << endl;
+          cout << cmd << ": " << command_vec[1] << ": No such file or directory" << endl;
         else
           chdir(path.c_str());
       }
