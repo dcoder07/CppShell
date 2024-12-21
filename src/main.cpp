@@ -107,6 +107,22 @@ int main()
           while (input[i] != '\'')
             cout << input[i++];
         }
+
+        else if (input.size() > 5 && input[5] == '\"')
+        {
+          int i = 5;
+          while (i < input.size())
+          {
+            if (input[i] == '\"')
+            {
+              i++;
+              while (input[i] != '\"')
+                cout << input[i++];
+            }
+            i++;
+          }
+        }
+
         else
         {
           for (int i = 1; i < command_vec.size(); i++)
@@ -180,11 +196,11 @@ int main()
       vector<string> paths_vec;
       while (i < input.size())
       {
-        if (input[i] == '\'')
+        if (input[i] == '\'' || input[i] == '\"')
         {
           i++;
           string path = "";
-          while (input[i] != '\'')
+          while (input[i] != '\'' || input[i] == '\"')
             path += input[i++];
           paths_vec.push_back(path);
         }
