@@ -33,7 +33,7 @@ fullCommandType commandToFullCommand(string command)
 {
   fullCommandType fct;
 
-  vector<string> builtIn_commands = {"exit", "echo", "type", "pwd"};
+  vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd"};
   if (find(builtIn_commands.begin(), builtIn_commands.end(), command) != builtIn_commands.end())
   {
     fct.type = commandType::builtIn;
@@ -125,6 +125,15 @@ int main()
 
       else if (cmd == "pwd")
         cout << filesystem::current_path().string() << endl;
+        
+      else if (cmd == "cd")
+      {
+        string path = findCommandExecPath(command_vec[1]);
+        if (path.size() == 0)
+          cout << cmd << ": " << path << ": No such file or directory" << endl;
+        else
+          chdir(path);
+      }
     }
 
     else if (fct.type == executable)
