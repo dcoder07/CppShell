@@ -79,7 +79,7 @@ int main()
       continue;
 
     fullCommandType fct = commandToFullCommand(command_vec[0]);
-    if (fct.type == builtIn)
+    else if (fct.type == builtIn)
     {
       string cmd = command_vec[0];
       if (cmd == "exit")
@@ -88,7 +88,7 @@ int main()
         return exit_code;
       }
 
-      if (cmd == "echo")
+      else if (cmd == "echo")
       {
         for (int i = 1; i < command_vec.size(); i++)
         {
@@ -97,19 +97,13 @@ int main()
           cout << command_vec[i];
         }
         cout << endl;
-        continue;
       }
 
-      if (cmd == "type")
+      else if (cmd == "type")
       {
         if (command_vec.size() < 2)
           continue;
         string c = command_vec[1];
-        if (c == "pwd")
-        {
-          cout << c << " is a shell builtin" << endl;
-          continue;
-        }
         fullCommandType cfct = commandToFullCommand(c);
         switch (cfct.type)
         {
@@ -126,18 +120,14 @@ int main()
         default:
           break;
         }
-        continue;
       }
-
-      if (cmd == "pwd")
+      else if (cmd == "pwd")
       {
-        string cwd = filesystem::current_path();
-        cout << cwd << endl;
+        cout << filesystem::current_path().string() << endl;
       }
-      continue;
     }
 
-    if (fct.type == executable)
+    else if (fct.type == executable)
     {
       string commmand_full_path = fct.execPath;
       for (int i = 1; i < command_vec.size(); i++)
@@ -145,9 +135,8 @@ int main()
 
       const char *command_ptr = commmand_full_path.c_str();
       system(command_ptr);
-      continue;
     }
-    cout << input << ": command not found" << endl;
+    else cout << input << ": command not found" << endl;
   }
 
   return 0;
