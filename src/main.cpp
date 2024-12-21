@@ -105,7 +105,7 @@ int main()
         if (command_vec.size() < 2)
           continue;
         string c = command_vec[1];
-        if (c == pwd)
+        if (c == "pwd")
         {
           cout << c << " is a shell builtin" << endl;
           continue;
