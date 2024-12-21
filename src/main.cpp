@@ -151,20 +151,27 @@ int main()
 
       else if (cmd == "cat")
       {
-        string path1 = "", path2 = "";
-        int i = 4;
-        while (input[i] != '\'')
-          path1 += input[i++];
-        i += 3;
-        while (input[i] != '\'')
-          path2 += input[i++];
+        int i = 0;
+        vector<string> paths_vec;
+        while (i < input.size())
+        {
+          if (input[i] == '\'')
+          {
+            i++;
+            string path = "";
+            while (input[i] != '\'')
+              path += input[i++];
+            paths_vec.push_back(path);
+          }
+          i++;
+        }
 
-        ifstream f1(path1), f2(path2);
-        if (f1.is_open())
-          cout << f1.rdbuf();
-        cout << " ";
-        if (f2.is_open())
-          cout << f2.rdbuf();
+        for (auto path : paths_vec)
+        {
+          ifstream f(path);
+          if (f2.is_open())
+            cout << f2.rdbuf() << " ";
+        }
         cout << endl;
       }
     }
