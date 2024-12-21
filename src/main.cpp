@@ -172,8 +172,8 @@ int main()
           if (f.is_open())
             cout << f.rdbuf();
         }
-        cout << endl;
       }
+
     }
 
     else if (fct.type == executable)
