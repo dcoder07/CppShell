@@ -126,10 +126,6 @@ int main()
           break;
         }
       }
-      else if (cmd == "pwd")
-      {
-        cout << filesystem::current_path().string() << endl;
-      }
     }
 
     else if (fct.type == executable)
@@ -141,6 +137,11 @@ int main()
       const char *command_ptr = commmand_full_path.c_str();
       system(command_ptr);
     }
+    else if (command_vec[0] == "pwd")
+    {
+      cout << filesystem::current_path().string() << endl;
+    }
+
     else
       cout << input << ": command not found" << endl;
   }
