@@ -125,14 +125,14 @@ int main()
 
       else if (cmd == "pwd")
         cout << filesystem::current_path().string() << endl;
-        
+
       else if (cmd == "cd")
       {
         string path = findCommandExecPath(command_vec[1]);
         if (path.size() == 0)
           cout << cmd << ": " << path << ": No such file or directory" << endl;
         else
-          chdir(path);
+          chdir(path.c_str());
       }
     }
 
