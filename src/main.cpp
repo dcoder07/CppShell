@@ -33,7 +33,7 @@ fullCommandType commandToFullCommand(string command)
 {
   fullCommandType fct;
 
-  vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd"};
+  vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd", "cat"};
   if (find(builtIn_commands.begin(), builtIn_commands.end(), command) != builtIn_commands.end())
   {
     fct.type = commandType::builtIn;
@@ -147,6 +147,25 @@ int main()
           chdir(path.c_str());
         else
           cout << cmd << ": " << path << ": No such file or directory" << endl;
+      }
+
+      else if (cmd == "cat")
+      {
+        string path1 = "", path2 = "";
+        int i = 4;
+        while (input[i] != "\'")
+          path1 += input[i++];
+        i += 3;
+        while (input[i] != "\'")
+          path2 += input[i++];
+
+        ifstream f1(path1), f2(path2);
+        if (f1.is_open())
+          cout << f1.rdbuf();
+        cout << " ";
+        if (f2.is_open())
+          cout << f1.rdbuf();
+        cout << endl;
       }
     }
 
