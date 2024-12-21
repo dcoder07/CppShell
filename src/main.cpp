@@ -190,8 +190,10 @@ int main()
         }
         i++;
       }
+
       for (auto path : paths_vec)
       {
+        cout << path << " ";
         ifstream f(path);
         if (f.is_open())
           cout << f.rdbuf();
