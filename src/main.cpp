@@ -178,7 +178,6 @@ int main()
     {
       int i = 0;
       vector<string> paths_vec;
-      cout << "ii" << endl;
       while (i < input.size())
       {
         if (input[i] == '\'')
@@ -186,7 +185,7 @@ int main()
           i++;
           string path = "";
           while (input[i] != '\'')
-            path += input[i];
+            path += input[i++];
           paths_vec.push_back(path);
         }
         i++;
