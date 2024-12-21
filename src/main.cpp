@@ -5,6 +5,7 @@ enum commandType
 {
   builtIn,
   executable,
+  ext_executable,
   nonexistent
 };
 
@@ -33,7 +34,9 @@ fullCommandType commandToFullCommand(string command)
 {
   fullCommandType fct;
 
-  vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd", "cat"};
+  vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd"},
+                 extExecutable_commands = {"ls", "cat", "grep", "mkdir", "rm"};
+
   if (find(builtIn_commands.begin(), builtIn_commands.end(), command) != builtIn_commands.end())
   {
     fct.type = commandType::builtIn;
@@ -41,6 +44,13 @@ fullCommandType commandToFullCommand(string command)
   }
 
   string exec_path = findCommandExecPath(command);
+  if (find(extExecutable_commands.begin(), extExecutable_commands.end(), command) != extExecutable_commands.end())
+  {
+    fct.type = commandType::ext_executable;
+    fct.execPath = exec_path;
+    return fct;
+  }
+
   if (exec_path.size() != 0)
   {
     fct.type = commandType::executable;
@@ -50,6 +60,7 @@ fullCommandType commandToFullCommand(string command)
 
   else
     fct.type = commandType::nonexistent;
+
   return fct;
 }
 
@@ -123,6 +134,9 @@ int main()
         case executable:
           cout << c << " is " << cfct.execPath << endl;
           break;
+        case ext_executable:
+          cout << c << " is " << cfct.execPath << endl;
+          break;
         case nonexistent:
           cout << c << ": not found" << endl;
           break;
@@ -148,32 +162,6 @@ int main()
         else
           cout << cmd << ": " << path << ": No such file or directory" << endl;
       }
-
-      else if (cmd == "cat")
-      {
-        int i = 0;
-        vector<string> paths_vec;
-        while (i < input.size())
-        {
-          if (input[i] == '\'')
-          {
-            i++;
-            string path = "";
-            while (input[i] != '\'')
-              path += input[i++];
-            paths_vec.push_back(path);
-          }
-          i++;
-        }
-
-        for (auto path : paths_vec)
-        {
-          ifstream f(path);
-          if (f.is_open())
-            cout << f.rdbuf();
-        }
-      }
-
     }
 
     else if (fct.type == executable)
@@ -184,6 +172,30 @@ int main()
 
       const char *command_ptr = commmand_full_path.c_str();
       system(command_ptr);
+    }
+
+    else if (fct.type == ext_executable)
+    {
+      i = 0;
+      vector<string> paths_vec;
+      while (i < input.size())
+      {
+        if (input[i] == '\'')
+        {
+          i++;
+          string path = "";
+          while (input[i] != '\'')
+            path += input[i];
+          paths_vec.push_back(path);
+        }
+        i++;
+      }
+      for (auto path : paths_vec)
+      {
+        ifstream f(path);
+        if (f.is_open())
+          cout << f.rdbuf();
+      }
     }
 
     else
