@@ -170,7 +170,7 @@ int main()
         {
           ifstream f(path);
           if (f.is_open())
-            cout << f.rdbuf() << " ";
+            cout << f.rdbuf();
         }
         cout << endl;
       }
