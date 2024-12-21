@@ -104,8 +104,11 @@ int main()
         if (command_vec.size() < 2)
           continue;
         string c = command_vec[1];
-        if (cmd == "pwd")
-          cout << filesystem::current_path().string() << endl;
+        if (c == "pwd")
+        {
+          cout << c << " is a shell builtin" << endl;
+          continue;
+        }
         fullCommandType cfct = commandToFullCommand(c);
         switch (cfct.type)
         {
