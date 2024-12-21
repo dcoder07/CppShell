@@ -178,6 +178,7 @@ int main()
     {
       int i = 0;
       vector<string> paths_vec;
+      cout << "ii" << endl;
       while (i < input.size())
       {
         if (input[i] == '\'')
@@ -193,7 +194,6 @@ int main()
 
       for (auto path : paths_vec)
       {
-        cout << path << " ";
         ifstream f(path);
         if (f.is_open())
           cout << f.rdbuf();
