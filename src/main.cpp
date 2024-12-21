@@ -129,7 +129,12 @@ int main()
       else if (cmd == "cd")
       {
         string path = command_vec[1];
-        if (filesystem::exists(path))
+        if (path == "~")
+        {
+          path = getenv("HOME");
+          chdir(path.c_str());
+        }
+        else if (filesystem::exists(path))
           chdir(path.c_str());
         else
           cout << cmd << ": " << path << ": No such file or directory" << endl;
