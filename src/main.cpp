@@ -104,6 +104,8 @@ int main()
         if (command_vec.size() < 2)
           continue;
         string c = command_vec[1];
+        if (cmd == "pwd")
+          cout << filesystem::current_path().string() << endl;
         fullCommandType cfct = commandToFullCommand(c);
         switch (cfct.type)
         {
@@ -136,7 +138,8 @@ int main()
       const char *command_ptr = commmand_full_path.c_str();
       system(command_ptr);
     }
-    else cout << input << ": command not found" << endl;
+    else
+      cout << input << ": command not found" << endl;
   }
 
   return 0;
