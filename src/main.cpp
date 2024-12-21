@@ -79,7 +79,7 @@ int main()
       continue;
 
     fullCommandType fct = commandToFullCommand(command_vec[0]);
-    else if (fct.type == builtIn)
+    if (fct.type == builtIn)
     {
       string cmd = command_vec[0];
       if (cmd == "exit")
