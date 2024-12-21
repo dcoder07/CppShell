@@ -128,11 +128,10 @@ int main()
 
       else if (cmd == "cd")
       {
-        string path = findCommandExecPath(command_vec[1]);
-        if (path.size() == 0)
-          cout << cmd << ": " << command_vec[1] << ": No such file or directory" << endl;
-        else
+        if (filesystem::exists(command_vec[1]))
           chdir(path.c_str());
+        else
+          cout << cmd << ": " << command_vec[1] << ": No such file or directory" << endl;
       }
     }
 
