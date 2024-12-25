@@ -130,7 +130,7 @@ int main()
         {
           int i = 6;
           while (input[i] != '\''){
-            if(input[i]=="\\") i++;
+            if(input[i]=='\\') i++;
             cout << input[i];
             i++;
           }
