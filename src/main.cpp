@@ -129,8 +129,11 @@ int main()
         if (input.size() > 5 && input[5] == '\'')
         {
           int i = 6;
-          while (input[i] != '\'')
-            cout << input[i++];
+          while (input[i] != '\''){
+            if(input[i]=="\\") i++;
+            cout << input[i];
+            i++;
+          }
         }
 
         else if (input.size() > 5 && input[5] == '\"')
@@ -142,9 +145,16 @@ int main()
             {
               i++;
               while (input[i] != '\"')
-                cout << input[i++];
+              {
+                if (input[i] == '\\')
+                  cout << "\\";
+                else
+                  cout << input[i];
+                i++;
+              }
               cout << " ";
             }
+
             i++;
           }
         }
