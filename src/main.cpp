@@ -71,17 +71,29 @@ vector<string> parseCommand(string s)
   string temp = "";
   while (i < s.size())
   {
-    if (s[i] == '\\' && i + 1 < s.size())
-      temp += s[++i];
-
+    if (s[i] == '\\' && i + 1 < s.size() && s[i + 1] == ' ')
+    {
+      temp += ' ';
+      i += 2;
+    }
     else if (s[i] == ' ')
     {
-      v.push_back(temp);
-      temp = "";
+      if (!temp.empty())
+      {
+        v.push_back(temp);
+        temp = "";
+      }
+      i++;
     }
     else
+    {
       temp += s[i];
-    i++;
+      i++;
+    }
+  }
+  if (!temp.empty())
+  {
+    v.push_back(temp);
   }
   return v;
 }
@@ -144,7 +156,7 @@ int main()
           while (input[i] != '\'')
             cout << input[i++];
         }
-        
+
         else if (input.size() > 5 && input[5] == '\"')
         {
           int i = 5;
