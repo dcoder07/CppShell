@@ -167,15 +167,15 @@ int main()
             if (i != 1)
               cout << " ";
             string str = command_vec[i];
-            int i = 0;
-            while (i < str.size())
+            int j = 0;
+            while (j < str.size())
             {
-              if (str[i] == '\\' && i + 1 < str.size())
-                cout << str[++i];
+              if (str[j] == '\\' && j + 1 < str.size())
+                cout << str[++j];
               else
               {
-                cout << str[i];
-                i++;
+                cout << str[j];
+                j++;
               }
             }
           }
