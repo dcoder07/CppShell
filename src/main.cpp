@@ -2,6 +2,20 @@
 #include "functions.cpp"
 using namespace std;
 
+enum commandType
+{
+  builtIn,
+  executable,
+  ext_executable,
+  nonexistent
+};
+
+struct fullCommandType
+{
+  commandType type;
+  string execPath;
+};
+
 string findCommandExecPath(string command);
 fullCommandType commandToFullCommand(string command);
 vector<string> parseCommand(string s);
