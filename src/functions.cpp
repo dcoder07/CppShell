@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "struct.h"
+#include "struct.cpp"
 using namespace std;
 
 string findCommandExecPath(string command)

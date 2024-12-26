@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include "functions.cpp"
-#include "struct.h"
+#include "user.cpp"
 
 using namespace std;
 
