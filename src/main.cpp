@@ -67,10 +67,22 @@ fullCommandType commandToFullCommand(string command)
 vector<string> parseCommand(string s)
 {
   vector<string> v;
-  stringstream ss(s);
+  int i = 0;
   string temp = "";
-  while (ss >> temp)
-    v.push_back(temp);
+  while (i < s.size())
+  {
+    if (s[i] == "\\" && i + 1 < s.size())
+      temp += s[++i];
+
+    else if (s[i] == " ")
+    {
+      v.push_back(temp);
+      temp = "";
+    }
+    else
+      temp += s[i];
+    i++;
+  }
   return v;
 }
 
@@ -164,8 +176,8 @@ int main()
         {
           for (int i = 1; i < command_vec.size(); i++)
           {
-
-            cout << "_";
+            if (i != 1)
+              cout << " ";
             cout << command_vec[i];
           }
         }
