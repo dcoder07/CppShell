@@ -133,7 +133,7 @@ int main()
           while (i < input.size())
           {
             if (input[i] == '\\' && i + 1 < input.size())
-              cout << input[++i];
+              cout << "Hi";
             else
             {
               cout << input[i];
