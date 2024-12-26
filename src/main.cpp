@@ -1,13 +1,8 @@
 #include <bits/stdc++.h>
 #include "functions.cpp"
-
-
 using namespace std;
 
-string findCommandExecPath(string command);
-fullCommandType commandToFullCommand(string command);
-vector<string> parseCommand(string s);
-void evaluateCatCommand(char ch, string &input);
+
 
 int main()
 {
