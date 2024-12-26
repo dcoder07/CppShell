@@ -164,20 +164,9 @@ int main()
         {
           for (int i = 1; i < command_vec.size(); i++)
           {
-            if (i != 1)
-              cout << " ";
-            string str = command_vec[i];
-            int j = 0;
-            while (j < str.size())
-            {
-              if (str[j] == '\\' && j + 1 < str.size())
-                cout << str[++j];
-              else
-              {
-                cout << str[j];
-                j++;
-              }
-            }
+
+            cout << "_";
+            cout << command_vec[i];
           }
         }
         cout << endl;
