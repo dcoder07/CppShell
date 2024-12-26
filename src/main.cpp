@@ -156,11 +156,7 @@ int main()
               i++;
               while (input[i] != '\"')
               {
-                if (input[i] == '\\')
-                  cout << "\\";
-                else
-                  cout << input[i];
-                i++;
+                cout << input[i++];
               }
               cout << " ";
             }
