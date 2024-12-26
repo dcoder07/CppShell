@@ -132,11 +132,8 @@ int main()
           int i = 5;
           while (i < input.size())
           {
-            if (input[i] == '\\' && i + 1 < input.size() && input[i + 1] == ' ')
-            {
-              cout << " ";
-              i += 2;
-            }
+            if (input[i] == '\\' && i + 1 < input.size())
+              cout << input[++i];
             else
             {
               cout << input[i];
@@ -155,9 +152,7 @@ int main()
             {
               i++;
               while (input[i] != '\"')
-              {
                 cout << input[i++];
-              }
               cout << " ";
             }
 
