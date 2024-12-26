@@ -71,10 +71,10 @@ vector<string> parseCommand(string s)
   string temp = "";
   while (i < s.size())
   {
-    if (s[i] == "\\" && i + 1 < s.size())
+    if (s[i] == '\\' && i + 1 < s.size())
       temp += s[++i];
 
-    else if (s[i] == " ")
+    else if (s[i] == ' ')
     {
       v.push_back(temp);
       temp = "";
