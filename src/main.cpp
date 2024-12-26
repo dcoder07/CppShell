@@ -71,9 +71,9 @@ vector<string> parseCommand(string s)
   string temp = "";
   while (i < s.size())
   {
-    if (s[i] == '\\' && i + 1 < s.size() && s[i + 1] == ' ')
+    if (s[i] == '\\' && i + 1 < s.size())
     {
-      temp += ' ';
+      temp += s[i + 1];
       i += 2;
     }
     else if (s[i] == ' ')
