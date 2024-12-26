@@ -138,23 +138,13 @@ int main()
 
       else if (cmd == "echo")
       {
-        if (input.size() > 5 && input[5] == '\\')
+        if (input.size() > 5 && input[5] == '\'')
         {
-          cout << input.substr(0, 5);
-          int i = 5;
-          while (i < input.size())
-          {
-            if (input[i] == '\\' && i + 1 < input.size())
-              cout << input[++i];
-            else
-            {
-              cout << input[i];
-              i++;
-            }
-          }
-          cout << endl;
+          int i = 6;
+          while (input[i] != '\'')
+            cout << input[i++];
         }
-
+        
         else if (input.size() > 5 && input[5] == '\"')
         {
           int i = 5;
