@@ -2,8 +2,6 @@
 #include "functions.cpp"
 using namespace std;
 
-
-
 int main()
 {
   cout << unitbuf;
