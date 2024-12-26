@@ -133,7 +133,7 @@ int main()
           while (i < input.size())
           {
             if (input[i] == '\\' && i + 1 < input.size())
-              cout << "Hi";
+              cout << input[++i];
             else
             {
               cout << input[i];
@@ -166,7 +166,18 @@ int main()
           {
             if (i != 1)
               cout << " ";
-            cout << command_vec[i];
+            string str = command_vec[i];
+            int i = 0;
+            while (i < str.size())
+            {
+              if (str[i] == '\\' && i + 1 < str.size())
+                cout << str[++i];
+              else
+              {
+                cout << str[i];
+                i++;
+              }
+            }
           }
         }
         cout << endl;
