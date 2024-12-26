@@ -1,9 +1,8 @@
 #include <bits/stdc++.h>
 #include "functions.cpp"
-using namespace std;
+#include "struct.h"
 
-enum commandType;
-struct fullCommandType;
+using namespace std;
 
 string findCommandExecPath(string command);
 fullCommandType commandToFullCommand(string command);
