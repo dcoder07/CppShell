@@ -150,39 +150,67 @@ int main()
 
       else if (cmd == "echo")
       {
-        if (input.size() > 5 && input[5] == '\'')
-        {
-          int i = 6;
-          while (input[i] != '\'')
-            cout << input[i++];
-        }
 
-        else if (input.size() > 5 && input[5] == '\"')
+        // if (input.size() > 5 && input[5] == '\'')
+        // {
+        //   int i = 0;
+        //   while (input[i] != '\'')
+        //     cout << input[i++];
+        // }
+
+        // else if (input.size() > 5 && input[5] == '\"')
+        // {
+        //   int i = 5;
+        //   while (i < input.size())
+        //   {
+        //     if (input[i] == '\"')
+        //     {
+        //       i++;
+        //       while (input[i] != '\"')
+        //         cout << input[i++];
+        //       cout << " ";
+        //     }
+
+        //     i++;
+        //   }
+        // }
+
+        // else
+        // {
+
+        for (int j = 1; j < command_vec.size(); j++)
         {
-          int i = 5;
-          while (i < input.size())
+          if (j != 1)
+            cout << " ";
+          int i = 0;
+          string cmdStr = command_vec[j];
+          while (i < cmdStr.size())
           {
-            if (input[i] == '\"')
+            if (cmdStr[i] == '\'')
             {
-              i++;
-              while (input[i] != '\"')
-                cout << input[i++];
-              cout << " ";
+              int i = 0;
+              while (cmdStr[i] != '\'')
+                cout << cmdStr[i++];
             }
 
-            i++;
+            else if (cmdStr[i] == '\"')
+            {
+              int i = 0;
+              while (i < cmdStr.size())
+              {
+                if (cmdStr[i] == '\"')
+                {
+                  i++;
+                  while (cmdStr[i] != '\"')
+                    cout << cmdStr[i++];
+                  cout << " ";
+                }
+                i++;
+              }
+            }
           }
         }
-
-        else
-        {
-          for (int i = 1; i < command_vec.size(); i++)
-          {
-            if (i != 1)
-              cout << " ";
-            cout << command_vec[i];
-          }
-        }
+        // }
         cout << endl;
       }
 
@@ -214,7 +242,8 @@ int main()
       }
 
       else if (cmd == "pwd")
-        cout << filesystem::current_path().string() << endl;
+        cout
+            << filesystem::current_path().string() << endl;
 
       else if (cmd == "cd")
       {
