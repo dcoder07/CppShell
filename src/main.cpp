@@ -162,7 +162,15 @@ int main()
             if (cmdStr[i] == '\'')
             {
               while (cmdStr[i] != '\'')
-                cout << cmdStr[i++];
+              {
+                if (cmdStr[i] == '\\' && i + 1 < cmdStr.size())
+                {
+                  cout << cmdStr[i + 1];
+                  i += 2;
+                }
+                else
+                  cout << cmdStr[i++];
+              }
             }
 
             else if (cmdStr[i] == '\"')
@@ -178,7 +186,7 @@ int main()
                     if (cmdStr[i] == '\\' && i + 1 < cmdStr.size())
                     {
                       cout << cmdStr[i + 1];
-                      i += 2;
+                      i++;
                     }
                     else
                       cout << cmdStr[i++];
