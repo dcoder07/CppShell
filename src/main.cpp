@@ -181,10 +181,7 @@ int main()
                 {
                   i++;
                   while (cmdStr[i] != '\"')
-                  {
-
                     cout << cmdStr[i++];
-                  }
                   cout << " ";
                 }
                 i++;
