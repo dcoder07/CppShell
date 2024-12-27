@@ -186,7 +186,7 @@ int main()
                     if (cmdStr[i] == '\\' && i + 1 < cmdStr.size())
                     {
                       cout << cmdStr[i + 1];
-                      i++;
+                      i += 2;
                     }
                     else
                       cout << cmdStr[i++];
