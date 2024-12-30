@@ -154,13 +154,7 @@ int main()
         {
           if (j != 1)
             cout << " ";
-
-          int i = 0;
-          string cmdStr = command_vec[j];
-          while (i < cmdStr.size())
-          {
-            cmdStr[i++];
-          }
+          cout << command_vec[j];
         }
         cout << endl;
       }
