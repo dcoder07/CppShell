@@ -159,28 +159,7 @@ int main()
           string cmdStr = command_vec[j];
           while (i < cmdStr.size())
           {
-            if (cmdStr[i] == '\'')
-            {
-              while (cmdStr[i] != '\'')
-                cout << cmdStr[i++];
-            }
-
-            else if (cmdStr[i] == '\"')
-            {
-              while (i < cmdStr.size())
-              {
-                if (cmdStr[i] == '\"')
-                {
-                  i++;
-                  while (cmdStr[i] != '\"')
-                  {
-                      cout << cmdStr[i++];
-                  }
-                  cout << " ";
-                }
-                i++;
-              }
-            }
+            cmdStr[i++];
           }
         }
         cout << endl;
