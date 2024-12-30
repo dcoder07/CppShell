@@ -79,6 +79,7 @@ string parseMarks(string s, int &i, char ch)
           str += s[i + 1];
           i++;
         }
+        i++;
       }
       else
         str += s[i++];
