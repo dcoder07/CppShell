@@ -70,7 +70,7 @@ string parseMarks(string s, int &i)
   if (s[i] == '\"')
   {
     i++;
-    while (s[i] != ch)
+    while (s[i] != '\"')
     {
       if (s[i] == '\\')
       {
