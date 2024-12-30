@@ -74,7 +74,7 @@ string parseMarks(string s, int &i, char ch)
     {
       if (s[i] == '\\')
       {
-        while (i + 1 < s.size())
+        while (i + 1 < s.size() && s[i + 1] != ch)
         {
           str += s[i + 1];
           i++;
