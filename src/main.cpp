@@ -173,7 +173,15 @@ int main()
                 {
                   i++;
                   while (cmdStr[i] != '\"')
-                    cout << cmdStr[i++];
+                  {
+                    if (cmdStr[i] == '\\' && i + 1 < cmdStr.size())
+                    {
+                      cout << cmdStr[i + 1];
+                      i += 2;
+                    }
+                    else
+                      cout << cmdStr[i++];
+                  }
                   cout << " ";
                 }
                 i++;
