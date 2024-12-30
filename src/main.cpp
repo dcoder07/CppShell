@@ -64,10 +64,10 @@ fullCommandType commandToFullCommand(string command)
   return fct;
 }
 
-string parseMarks(string s, int &i)
+string parseMarks(string s, int &i, char ch)
 {
   string str = "";
-  if (s[i] == '\"')
+  if (ch == '\"')
   {
     i++;
     while (s[i] != '\"')
@@ -111,7 +111,7 @@ vector<string> parseCommand(string s)
   {
     if (s[i] == '\'' || s[i] == '\"')
     {
-      temp += parseMarks(s, i);
+      temp += parseMarks(s, i, s[i]);
       i++;
     }
 
