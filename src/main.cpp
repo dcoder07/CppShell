@@ -176,7 +176,10 @@ int main()
                   {
                     if (cmdStr[i] == '\\' && i + 1 < cmdStr.size())
                     {
-                      cout << cmdStr[i + 1];
+                      if (cmdStr[i + 1] == '\\')
+                        cout << "\\";
+                      else
+                        cout << cmdStr[i + 1];
                       i += 2;
                     }
                     else
