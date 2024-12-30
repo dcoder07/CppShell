@@ -76,7 +76,7 @@ string parseMarks(string s, int &i, char ch)
       {
         if (i + 1 < s.size() && s[i + 1] != '\\')
         {
-          str += s[i];
+          str += s[i + 1];
           i += 2;
         }
         else if (i + 1 < s.size() && s[i + 1] == '\\')
