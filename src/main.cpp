@@ -91,7 +91,13 @@ vector<string> parseCommand(string s)
   string temp = "";
   while (i < s.size())
   {
-    if (s[i] == '\\' && i + 1 < s.size())
+    if (s[i] == '\'' || s[i] == '\"')
+    {
+      temp = parseMarks(s, i, s[i]);
+      i++;
+    }
+
+    else if (s[i] == '\\' && i + 1 < s.size())
     {
       temp += s[i + 1];
       i += 2;
