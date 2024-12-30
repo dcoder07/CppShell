@@ -97,7 +97,7 @@ vector<string> parseCommand(string s)
   {
     if (s[i] == '\'' || s[i] == '\"')
     {
-      temp = parseMarks(s, i, s[i]);
+      temp += parseMarks(s, i, s[i]);
       i++;
     }
 
