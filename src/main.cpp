@@ -64,6 +64,26 @@ fullCommandType commandToFullCommand(string command)
   return fct;
 }
 
+string parseMarks(string s, int &i, char ch)
+{
+  string str = "";
+  if (s[i] == ch)
+  {
+    i++;
+    while (s[i] != ch)
+    {
+      if (s[i] == '\\' && i + 1 < s.size())
+      {
+        str += s[i + 1];
+        i += 2;
+      }
+      else
+        str += s[i++];
+    }
+  }
+  return str;
+}
+
 vector<string> parseCommand(string s)
 {
   vector<string> v;
@@ -71,7 +91,13 @@ vector<string> parseCommand(string s)
   string temp = "";
   while (i < s.size())
   {
-    if (s[i] == '\\' && i + 1 < s.size())
+    if (s[i] == '\'' || s[i] == '\"')
+    {
+      string str = parseMarks(s, i, s[i]);
+      i++;
+    }
+
+    else if (s[i] == '\\' && i + 1 < s.size())
     {
       temp += s[i + 1];
       i += 2;
@@ -91,10 +117,9 @@ vector<string> parseCommand(string s)
       i++;
     }
   }
+
   if (!temp.empty())
-  {
     v.push_back(temp);
-  }
   return v;
 }
 
