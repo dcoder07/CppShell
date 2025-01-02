@@ -6,6 +6,7 @@ enum commandType
   builtIn,
   executable,
   ext_executable,
+  custom_cat_executable,
   nonexistent
 };
 
@@ -64,7 +65,7 @@ fullCommandType commandToFullCommand(string command)
   return fct;
 }
 
-string parseMarks(string s, int &i, char ch)
+string evaluateQuoted(string s, int &i, char ch)
 {
   string str = "";
   if (ch == '\"')
@@ -111,7 +112,7 @@ vector<string> parseCommand(string s)
   {
     if (s[i] == '\'' || s[i] == '\"')
     {
-      temp += parseMarks(s, i, s[i]);
+      temp += evaluateQuoted(s, i, s[i]);
       i++;
     }
 
