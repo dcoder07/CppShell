@@ -280,9 +280,10 @@ int main()
       fct.execPath = input[0] + fct.execPath + input[0];
 
       string command_full_path = str + fct.execPath;
-      cout << command_full_path << endl;
-      const char *command_ptr = command_full_path.c_str();
-      system(command_ptr);
+      
+      ifstream f(command_full_path);
+      if (f.is_open())
+        cout << f.rdbuf();
     }
 
     else
