@@ -196,6 +196,7 @@ int main()
       if (cmd == "exit")
       {
         int exit_code = stoi(command_vec[1]);
+        cout << "Hii" << endl;
         return exit_code;
       }
 
