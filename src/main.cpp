@@ -52,6 +52,13 @@ fullCommandType commandToFullCommand(string command)
     return fct;
   }
 
+  if (command.size() > 4 && command.substr(1, 3) == "exe")
+  {
+    fct.type = commandType::custom_cat_executable;
+    fct.execPath = command;
+    return fct;
+  }
+
   if (exec_path.size() != 0)
   {
     fct.type = commandType::executable;
@@ -262,6 +269,16 @@ int main()
     else if (fct.type == ext_executable)
     {
       evaluateCatCommand(input[4], input);
+    }
+
+    else if (fct.type = custom_cat_executable)
+    {
+      string str = command_vec[1];
+      while (str[str.size() - 1] != '/')
+        str.pop_back();
+      string command_full_path = str + fct.execPath;
+      const char *command_ptr = commmand_full_path.c_str();
+      system(command_ptr);
     }
 
     else
