@@ -273,6 +273,7 @@ int main()
 
     else if (fct.type = custom_cat_executable)
     {
+      cout << "here" << endl;
       string str = command_vec[1];
       while (str[str.size() - 1] != '/')
         str.pop_back();
