@@ -278,10 +278,10 @@ int main()
     else
       cout << input << ": command not found" << endl;
 
-    for (auto val : command_vec)
+    for (int i = 0; i < command_vec.size(); i++)
     {
-      if (val == "invalid_grape_command")
-        cout << "hii" << endl;
+      if (command_vec[i] == "invalid_grape_command")
+        cout << "hii " << i << endl;
     }
   }
 
