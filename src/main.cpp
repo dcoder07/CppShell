@@ -274,7 +274,6 @@ int main()
     else if (fct.type = custom_cat_executable)
     {
       string str = command_vec[1];
-      cout << str << endl;
       while (str[str.size() - 1] != '/')
         str.pop_back();
       cout << str << endl;
