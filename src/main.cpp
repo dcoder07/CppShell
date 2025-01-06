@@ -277,6 +277,9 @@ int main()
 
     else
       cout << input << ": command not found" << endl;
+
+    if (command_vec[0] == "invalid_blueberry_command")
+      cout << "hii" << endl;
   }
 
   return 0;
