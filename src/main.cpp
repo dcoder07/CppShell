@@ -258,11 +258,11 @@ int main()
 
     else if (fct.type == executable)
     {
-      string commmand_full_path = fct.execPath;
+      string command_full_path = fct.execPath;
       for (int i = 1; i < command_vec.size(); i++)
         commmand_full_path += (" " + command_vec[i]);
 
-      const char *command_ptr = commmand_full_path.c_str();
+      const char *command_ptr = command_full_path.c_str();
       system(command_ptr);
     }
 
@@ -277,7 +277,7 @@ int main()
       while (str[str.size() - 1] != '/')
         str.pop_back();
       string command_full_path = str + fct.execPath;
-      const char *command_ptr = commmand_full_path.c_str();
+      const char *command_ptr = command_full_path.c_str();
       system(command_ptr);
     }
 
