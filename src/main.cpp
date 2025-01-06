@@ -196,7 +196,6 @@ int main()
       if (cmd == "exit")
       {
         int exit_code = stoi(command_vec[1]);
-        cout << "Hii" << endl;
         return exit_code;
       }
 
@@ -269,14 +268,13 @@ int main()
     else if (fct.type == ext_executable)
       evaluateCatCommand(input[4], input);
 
-    else if (fct.type = custom_cat_executable)
+    else if (fct.type == custom_cat_executable)
     {
       ifstream f(command_vec[1]);
       if (f.is_open())
         cout << f.rdbuf();
     }
-
-    else if (fct.type == nonexistent)
+    else
       cout << input << ": command not found" << endl;
   }
 
