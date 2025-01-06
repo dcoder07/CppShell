@@ -279,7 +279,6 @@ int main()
 
       fct.execPath = input[0] + fct.execPath + input[0];
 
-      cout << fct.execPath << endl;
       string command_full_path = str + fct.execPath;
       cout << command_full_path << endl;
       const char *command_ptr = command_full_path.c_str();
