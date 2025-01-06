@@ -263,7 +263,6 @@ int main()
 
       const char *command_ptr = command_full_path.c_str();
       system(command_ptr);
-      cout << "Hi" << endl;
     }
 
     else if (fct.type == ext_executable)
