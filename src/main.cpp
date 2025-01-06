@@ -187,10 +187,7 @@ int main()
 
     vector<string> command_vec = parseCommand(input);
     if (command_vec.size() == 0)
-    {
-      cout << "String is empty!" << endl;
       continue;
-    }
 
     fullCommandType fct = commandToFullCommand(command_vec[0]);
     if (fct.type == builtIn)
@@ -241,8 +238,7 @@ int main()
       }
 
       else if (cmd == "pwd")
-        cout
-            << filesystem::current_path().string() << endl;
+        cout << filesystem::current_path().string() << endl;
 
       else if (cmd == "cd")
       {
@@ -261,6 +257,7 @@ int main()
 
     else if (fct.type == executable)
     {
+      cout << "Hi" << endl;
       string command_full_path = fct.execPath;
       for (int i = 1; i < command_vec.size(); i++)
         command_full_path += (" " + command_vec[i]);
@@ -270,9 +267,7 @@ int main()
     }
 
     else if (fct.type == ext_executable)
-    {
       evaluateCatCommand(input[4], input);
-    }
 
     else if (fct.type = custom_cat_executable)
     {
