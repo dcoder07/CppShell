@@ -275,14 +275,8 @@ int main()
         cout << f.rdbuf();
     }
 
-    else
+    else if (fct.type == nonexistent)
       cout << input << ": command not found" << endl;
-
-    for (int i = 0; i < command_vec.size(); i++)
-    {
-      if (i != 1 && (command_vec[i] == "invalid_pear_command" || command_vec[i] == "invalid_blueberry_command" || command_vec[i] == "invalid_strawberry_command" || command_vec[i] == "invalid_raspberry_command "))
-        cout << "hii " << i << endl;
-    }
   }
 
   return 0;
