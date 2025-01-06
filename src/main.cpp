@@ -52,7 +52,7 @@ fullCommandType commandToFullCommand(string command)
     return fct;
   }
 
-  if (command.size() > 4 && command.substr(1, 3) == "exe")
+  if (command.size() > 3 && command.substr(0, 3) == "exe")
   {
     fct.type = commandType::custom_cat_executable;
     fct.execPath = command;
