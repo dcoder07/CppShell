@@ -273,10 +273,11 @@ int main()
 
     else if (fct.type = custom_cat_executable)
     {
-      cout << "here" << endl;
       string str = command_vec[1];
+      cout << str << endl;
       while (str[str.size() - 1] != '/')
         str.pop_back();
+      cout << str << endl;
       string command_full_path = str + fct.execPath;
       const char *command_ptr = command_full_path.c_str();
       system(command_ptr);
