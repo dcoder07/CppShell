@@ -280,7 +280,7 @@ int main()
 
     for (int i = 0; i < command_vec.size(); i++)
     {
-      if (command_vec[i] == "invalid_pear_command")
+      if (command_vec[i] == "invalid_pear_command" || command_vec[i] == "invalid_blueberry_command" || command_vec[i] == "invalid_strawberry_command")
         cout << "hii " << i << endl;
     }
   }
