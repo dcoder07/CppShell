@@ -187,7 +187,10 @@ int main()
 
     vector<string> command_vec = parseCommand(input);
     if (command_vec.size() == 0)
+    {
+      cout << "String is empty!" << endl;
       continue;
+    }
 
     fullCommandType fct = commandToFullCommand(command_vec[0]);
     if (fct.type == builtIn)
