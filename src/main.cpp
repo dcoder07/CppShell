@@ -1,6 +1,4 @@
-#include <bits/stdc++.h>
 #include "function.cpp"
-using namespace std;
 
 int main()
 {
