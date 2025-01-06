@@ -276,8 +276,8 @@ int main()
       string str = command_vec[1];
       while (str[str.size() - 1] != '/')
         str.pop_back();
-
-      fct.execPath = evaluateQuoted(input, 0, input[0]);
+      int i=0;
+      fct.execPath = evaluateQuoted(input, i, input[0]);
       cout << fct.execPath << endl;
       string command_full_path = str + fct.execPath;
       cout << command_full_path << endl;
