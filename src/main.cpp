@@ -273,15 +273,7 @@ int main()
 
     else if (fct.type = custom_cat_executable)
     {
-      string str = command_vec[1];
-      // while (str[str.size() - 1] != '/')
-      //   str.pop_back();
-
-      // fct.execPath = input[0] + fct.execPath + input[0];
-
-      string command_full_path = str; //+ fct.execPath;
-
-      ifstream f(command_full_path);
+      ifstream f(command_vec[1]);
       if (f.is_open())
         cout << f.rdbuf();
     }
