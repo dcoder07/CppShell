@@ -277,7 +277,7 @@ int main()
       while (str[str.size() - 1] != '/')
         str.pop_back();
 
-      fct.execPath = input[0] + fct.execPath + input[0];
+      // fct.execPath = input[0] + fct.execPath + input[0];
 
       string command_full_path = str + fct.execPath;
       
