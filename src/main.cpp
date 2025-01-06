@@ -155,13 +155,11 @@ void evaluateCatCommand(char ch, string &input)
   vector<string> paths_vec;
   while (i < input.size())
   {
-    if (input[i] == ch || input[i] == '/')
+    if (input[i] == ch)
     {
-      if (input[i] != '/')
-        i++;
-        
+      i++;
       string path = "";
-      while (input[i] != ch && i < input.size())
+      while (input[i] != ch)
         path += input[i++];
       paths_vec.push_back(path);
     }
