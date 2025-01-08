@@ -37,16 +37,17 @@ fullCommandType commandToFullCommand(string &command, vector<string> &command_ve
 {
   fullCommandType fct;
 
+  for (auto st : command_vec)
+  {
+    if (st == ">" || st == "1>")
+    {
+      fct.type = commandType::redirection;
+      return fct;
+    }
+  }
+
   vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd"},
                  extExecutable_commands = {"ls", "cat", "grep", "mkdir", "rm"};
-
-  static bool cmp(string & s) { return s == ">" || s == "1>"; }
-
-  if (find(command_vec.begin(), command_vec.end(), cmp) != command_vec.end())
-  {
-    fct.type = commandType::redirection;
-    return fct;
-  }
 
   if (find(builtIn_commands.begin(), builtIn_commands.end(), command) != builtIn_commands.end())
   {
