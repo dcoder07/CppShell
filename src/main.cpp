@@ -40,9 +40,9 @@ fullCommandType commandToFullCommand(string &command, vector<string> &command_ve
   vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd"},
                  extExecutable_commands = {"ls", "cat", "grep", "mkdir", "rm"};
 
-  if (find(command_vec.begin(), command_vec.end(), ">") != command_vec.end())
+  if (find(command_vec.begin(), command_vec.end(), [](const string &s)
+           { return s == ">" || s == "1>"; }) != command_vec.end())
   {
-     cout<<"hii"<<endl;
     fct.type = commandType::redirection;
     return fct;
   }
