@@ -160,7 +160,7 @@ vector<string> parseCommand(string s)
   return v;
 }
 
-void evaluateCatCommand(vector<string> command_vec, fullCommandType fct)
+void evaluateCatCommand(vector<string> command_vec, fullCommandType &fct)
 {
   for (int i = 0; i < command_vec.size(); i++)
   {
@@ -171,7 +171,7 @@ void evaluateCatCommand(vector<string> command_vec, fullCommandType fct)
     if (fct.m.find(path) != fct.m.end())
       path = fct.m[path];
 
-    cout << path;
+    cout << path << endl;
     ifstream f(path);
     if (f.is_open())
       cout << f.rdbuf();
@@ -201,7 +201,7 @@ int main()
       {
         if (command_vec[i] == ">" || command_vec[i] == "1>")
         {
-          string execPath = findCommandExecPath(command_vec[i + 1]);
+          string execPath = findCommandExecPath(command_vec[i - 1]);
           if (execPath.size() == 0)
             continue;
           fct.m[command_vec[i + 1]] = command_vec[i - 1];
