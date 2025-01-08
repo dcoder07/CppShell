@@ -40,7 +40,7 @@ fullCommandType commandToFullCommand(string &command, vector<string> &command_ve
   vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd"},
                  extExecutable_commands = {"ls", "cat", "grep", "mkdir", "rm"};
 
-  bool cmp(string & s) { return s == ">" || s == "1>"; }
+  static bool cmp(string & s) { return s == ">" || s == "1>"; }
 
   if (find(command_vec.begin(), command_vec.end(), cmp) != command_vec.end())
   {
