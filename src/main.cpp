@@ -40,7 +40,8 @@ fullCommandType commandToFullCommand(string &command, vector<string> &command_ve
   vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd"},
                  extExecutable_commands = {"ls", "cat", "grep", "mkdir", "rm"};
 
-  if (find(command_vec.begin(), command_vec.end(), ">"))
+  if (find(command_vec.begin(), command_vec.end(), [](string s)
+           { return s == ">" || s == "1>"; }))
   {
     fct.type = commandType::redirection;
     return fct;
@@ -195,7 +196,7 @@ int main()
     {
       for (int i = 0; i < command_vec.size(); i++)
       {
-        if (command_vec[i] == ">" || command_vec == "1>")
+        if (command_vec[i] == ">" || command_vec[i] == "1>")
         {
           string execPath = findCommandExecPath(command_vec[i + 1]);
           if (execPath.size() == 0)
