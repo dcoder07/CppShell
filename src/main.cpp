@@ -171,6 +171,7 @@ void evaluateCatCommand(vector<string> command_vec, fullCommandType fct)
     if (fct.m.find(path) != fct.m.end())
       path = fct.m[path];
 
+    cout << path;
     ifstream f(path);
     if (f.is_open())
       cout << f.rdbuf();
