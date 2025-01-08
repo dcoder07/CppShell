@@ -196,11 +196,11 @@ int main()
 
     if (fct.type == redirection)
     {
-      cout << "hii";
       for (int i = 0; i < command_vec.size(); i++)
       {
         if (command_vec[i] == ">" || command_vec[i] == "1>")
         {
+          cout << "hii";
           string execPath = findCommandExecPath(command_vec[i + 1]);
           if (execPath.size() == 0)
             continue;
