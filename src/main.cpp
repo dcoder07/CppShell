@@ -42,6 +42,7 @@ fullCommandType commandToFullCommand(string &command, vector<string> &command_ve
 
   if (find(command_vec.begin(), command_vec.end(), ">") != command_vec.end())
   {
+     cout<<"hii"<<endl;
     fct.type = commandType::redirection;
     return fct;
   }
