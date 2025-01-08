@@ -40,7 +40,7 @@ fullCommandType commandToFullCommand(string &command, vector<string> &command_ve
   vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd"},
                  extExecutable_commands = {"ls", "cat", "grep", "mkdir", "rm"};
 
-  if (find(command_vec.begin(), command_vec.end(), ">")
+  if (find(command_vec.begin(), command_vec.end(), ">"))
   {
     fct.type = commandType::redirection;
     return fct;
