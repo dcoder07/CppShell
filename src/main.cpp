@@ -41,6 +41,7 @@ fullCommandType commandToFullCommand(string &command, vector<string> &command_ve
   {
     if (st == ">" || st == "1>")
     {
+      cout << "hii" << endl;
       fct.type = commandType::redirection;
       return fct;
     }
@@ -208,7 +209,7 @@ int main()
       }
     }
 
-    if (fct.type == builtIn)
+    else if (fct.type == builtIn)
     {
       string cmd = command_vec[0];
       if (cmd == "exit")
