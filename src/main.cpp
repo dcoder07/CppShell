@@ -3,7 +3,6 @@ using namespace std;
 
 enum commandType
 {
-  redirection,
   builtIn,
   executable,
   ext_executable,
@@ -15,7 +14,6 @@ struct fullCommandType
 {
   commandType type;
   string execPath;
-  unordered_map<string, string> m;
 };
 
 string findCommandExecPath(string command)
@@ -33,18 +31,9 @@ string findCommandExecPath(string command)
   return "";
 }
 
-fullCommandType commandToFullCommand(string &command, vector<string> &command_vec)
+fullCommandType commandToFullCommand(string command)
 {
   fullCommandType fct;
-
-  for (auto st : command_vec)
-  {
-    if (st == ">" || st == "1>")
-    {
-      fct.type = commandType::redirection;
-      return fct;
-    }
-  }
 
   vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd"},
                  extExecutable_commands = {"ls", "cat", "grep", "mkdir", "rm"};
@@ -160,17 +149,25 @@ vector<string> parseCommand(string s)
   return v;
 }
 
-void evaluateCatCommand(vector<string> command_vec, fullCommandType &fct)
+void evaluateCatCommand(char ch, string &input)
 {
-  for (int i = 0; i < command_vec.size(); i++)
+  int i = 0;
+  vector<string> paths_vec;
+  while (i < input.size())
   {
-    if (i == 0)
-      continue;
-    string path = command_vec[i];
+    if (input[i] == ch)
+    {
+      i++;
+      string path = "";
+      while (input[i] != ch)
+        path += input[i++];
+      paths_vec.push_back(path);
+    }
+    i++;
+  }
 
-    if (fct.m.find(path) != fct.m.end())
-      path = fct.m[path];
-
+  for (auto path : paths_vec)
+  {
     ifstream f(path);
     if (f.is_open())
       cout << f.rdbuf();
@@ -192,23 +189,8 @@ int main()
     if (command_vec.size() == 0)
       continue;
 
-    fullCommandType fct = commandToFullCommand(command_vec[0], command_vec);
-
-    if (fct.type == redirection)
-    {
-      for (int i = 0; i < command_vec.size(); i++)
-      {
-        if (command_vec[i] == ">" || command_vec[i] == "1>")
-        {
-          // string execPath = findCommandExecPath(command_vec[i - 1]);
-          // if (execPath.size() == 0)
-          //   continue;
-          fct.m[command_vec[i + 1]] = command_vec[i - 1];
-        }
-      }
-    }
-
-    else if (fct.type == builtIn)
+    fullCommandType fct = commandToFullCommand(command_vec[0]);
+    if (fct.type == builtIn)
     {
       string cmd = command_vec[0];
       if (cmd == "exit")
@@ -234,7 +216,7 @@ int main()
           continue;
         string c = command_vec[1];
 
-        fullCommandType cfct = commandToFullCommand(c, command_vec);
+        fullCommandType cfct = commandToFullCommand(c);
         switch (cfct.type)
         {
         case builtIn:
@@ -276,7 +258,6 @@ int main()
     else if (fct.type == executable)
     {
       string command_full_path = fct.execPath;
-
       for (int i = 1; i < command_vec.size(); i++)
         command_full_path += (" " + command_vec[i]);
 
@@ -285,7 +266,7 @@ int main()
     }
 
     else if (fct.type == ext_executable)
-      evaluateCatCommand(command_vec, fct);
+      evaluateCatCommand(input[4], input);
 
     else if (fct.type == custom_cat_executable)
     {
