@@ -189,7 +189,7 @@ void evaluateCatCommand(char ch, string &input)
   {
     ifstream f(path);
     if (f.is_open())
-      cout << f.rdbuf()<<"hii";
+      cout << f.rdbuf();
   }
 }
 
@@ -212,7 +212,7 @@ int main()
     if (fct.type == redirect)
     {
       string destPath = fct.rdr.dest, srcPath = fct.rdr.src, type = fct.rdr.rType;
- 
+      cout<<srcPath<<" "<<destPath;
 
       if (!filesystem::exists(destPath))
         cout << type << ": " << destPath << ": No such file or directory";
