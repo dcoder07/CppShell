@@ -219,14 +219,14 @@ int main()
 
       else if (type == "cat" || type == "ls")
       { 
-        cout<<"hi"<<endl;
         ifstream source(srcPath, ios::in);
         ofstream destination(destPath, ios::out);
         destination << source.rdbuf();
         source.close();
         destination.close();
         if (type == "cat")
-        {
+        { 
+          cout<<"hii"<<endl;
           ifstream f(destPath);
           if (f.is_open())
             cout << f.rdbuf();
