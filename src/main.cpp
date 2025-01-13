@@ -169,7 +169,8 @@ vector<string> parseCommand(string s)
 }
 
 void evaluateCatCommand(char ch, string &input)
-{
+{ 
+  cout<<"hii"<<endl;
   int i = 0;
   vector<string> paths_vec;
   while (i < input.size())
@@ -226,7 +227,6 @@ int main()
         destination.close();
         if (type == "cat")
         { 
-          cout<<"hii"<<endl;
           ifstream f(destPath);
           if (f.is_open())
             cout << f.rdbuf();
