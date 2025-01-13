@@ -212,13 +212,14 @@ int main()
     if (fct.type == redirect)
     {
       string destPath = fct.rdr.dest, srcPath = fct.rdr.src, type = fct.rdr.rType;
-      cout<<type;
+ 
 
       if (!filesystem::exists(destPath))
         cout << type << ": " << destPath << ": No such file or directory";
 
       else if (type == "cat" || type == "ls")
-      {
+      { 
+        cout<<"hi"<<endl;
         ifstream source(srcPath, ios::in);
         ofstream destination(destPath, ios::out);
         destination << source.rdbuf();
