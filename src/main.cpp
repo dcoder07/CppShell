@@ -74,10 +74,10 @@ fullCommandType commandToFullCommand(string command)
 
 string evaluateQuoted(string s, int &i, char ch)
 {
+  i++;
   string str = "";
   if (ch == '\"')
   {
-    i++;
     while (s[i] != '\"')
     {
       if (s[i] == '\\')
@@ -103,7 +103,6 @@ string evaluateQuoted(string s, int &i, char ch)
   }
   else
   {
-    i++;
     while (s[i] != '\'')
       str += s[i++];
   }
