@@ -7,13 +7,21 @@ enum commandType
   executable,
   ext_executable,
   custom_cat_executable,
+  redirect,
   nonexistent
 };
 
+struct redirection
+{
+  string rType;
+  string src;
+  string dest;
+};
 struct fullCommandType
 {
   commandType type;
   string execPath;
+  redirection rdr;
 };
 
 string findCommandExecPath(string command)
@@ -31,9 +39,21 @@ string findCommandExecPath(string command)
   return "";
 }
 
-fullCommandType commandToFullCommand(string command)
+fullCommandType commandToFullCommand(string command, vector<string> command_vec)
 {
   fullCommandType fct;
+
+  for (int i = 0; i < command_vec.size(); i++)
+  {
+    if (command_vec[i] == ">" || command_vec[i] == "1>")
+    {
+      fct.type = commandType::redirect;
+      fct.rdr.rType = command_vec[0];
+      fct.rdr.dest = command_vec[i - 1];
+      fct.rdr.src = command_vec[i + 1];
+      return fct;
+    }
+  }
 
   vector<string> builtIn_commands = {"exit", "echo", "type", "pwd", "cd"},
                  extExecutable_commands = {"ls", "cat", "grep", "mkdir", "rm"};
@@ -188,8 +208,30 @@ int main()
     if (command_vec.size() == 0)
       continue;
 
-    fullCommandType fct = commandToFullCommand(command_vec[0]);
-    if (fct.type == builtIn)
+    fullCommandType fct = commandToFullCommand(command_vec[0], command_vec);
+    if (fct.type == redirect)
+    {
+      string destPath = fct.rdr.dest, srcPath = fct.rdr.src, type = fct.rdr.rType;
+
+      if (!filesystem::exists(destPath))
+        cout << type << ": " << destPath << ": No such file or directory";
+
+      else if (type == "cat" || type == "ls")
+      {
+        ifstream source(srcPath, ios::in);
+        ofstream destination(destPath, ios::out);
+        destination << source.rdbuf();
+        source.close();
+        destination.close();
+        if (type == "cat")
+        {
+          ifstream f(destPath);
+          if (f.is_open())
+            cout << f.rdbuf();
+        }
+      }
+    }
+    else if (fct.type == builtIn)
     {
       string cmd = command_vec[0];
       if (cmd == "exit")
@@ -215,7 +257,7 @@ int main()
           continue;
         string c = command_vec[1];
 
-        fullCommandType cfct = commandToFullCommand(c);
+        fullCommandType cfct = commandToFullCommand(c, command_vec);
         switch (cfct.type)
         {
         case builtIn:
