@@ -216,6 +216,7 @@ int main()
       if (!filesystem::exists(destPath))
         cout << type << ": " << destPath << ": No such file or directory";
 
+      cout << type << endl;
       else if (type == "cat" || type == "ls")
       {
         ifstream source(srcPath, ios::in);
